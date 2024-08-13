@@ -1,6 +1,8 @@
 require("dotenv").config();
 const {Client, IntentsBitField} = require('discord.js');
-const wait = require('util').promisify(setTimeout);
+required_words = ["shikanoko", "nokonoko", "koshitantan"];
+
+
 
 // Intents = set of permissions to access set of events
 //  ex. if have Guilds, will know if guild (aka server) is created, etc.
@@ -28,19 +30,27 @@ client.on('messageCreate', (message) => {
     if (message.author.bot) {
         return;
     }
-    if (message.content === "shika") {
-        //  https://stackoverflow.com/questions/69124819/send-an-image-using-discord-js
-        message.channel.send( "Nun.\n", {files: [{ attachment: 'static\\images\\NUN.jpg' }]});
-        message.channel.send({files: [{ attachment: 'static\\images\\NUN.jpg' }]});
-        console.log("waiting");
-        setTimeout(function(){
-            console.log("reply message")
-       
-            message.channel.send("https://www.youtube.com/watch?v=ZZvIVRQ4E7I");
-        }, 1500);
+    
+    sentWords = message.content.toLowerCase();
+
+    if (message.content === "shikanoko nokonoko koshitantan") {
         
+        shikaMsg(message);
 
     }
 })
+
+function shikaMsg(message) {
+    //  https://stackoverflow.com/questions/69124819/send-an-image-using-discord-js
+    message.channel.send( "Nun.\n");
+    message.channel.send({files: [{ attachment: 'static\\images\\NUN.jpg' }]});
+    
+    console.log("waiting");
+
+    setTimeout(function(){
+        console.log("reply message");
+        message.channel.send("https://www.youtube.com/watch?v=ZZvIVRQ4E7I");
+    }, 1500);
+}
 
 client.login(process.env.TOKEN);
