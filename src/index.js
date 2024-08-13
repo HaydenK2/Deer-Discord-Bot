@@ -1,5 +1,7 @@
 const {Client, IntentsBitField} = require('discord.js')
-token = MTI3MzAxNzkzNjMxOTM1MjgzMw.GA4eY4.wKUkTGETkUw51tkh-CvzJrhAUrReieC_IL37dc
+
+token = "dfs"
+
 const client = new Client(
     // Intents = set of permissions to access set of events
     //  ex. if have Guilds, will know if guild (aka server) is created, etc.
