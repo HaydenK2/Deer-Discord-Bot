@@ -1,7 +1,10 @@
+require("dotenv").config();
 const {Client, IntentsBitField} = require('discord.js');
+const wait = require('util').promisify(setTimeout);
 
 // Intents = set of permissions to access set of events
 //  ex. if have Guilds, will know if guild (aka server) is created, etc.
+//  need to turn on priviliged getway intents on bot
 const client = new Client({
 
     intents: [
@@ -12,4 +15,32 @@ const client = new Client({
     ],
 });
 
-client.login("MTI3MzAxNzkzNjMxOTM1MjgzMw.GA4eY4.wKUkTGETkUw51tkh-CvzJrhAUrReieC_IL37dc");
+
+//  Confirms bot is online
+client.on('ready', (cli) => {
+    console.log(`${cli.user.tag} is online.`);
+});
+
+//  message listener
+client.on('messageCreate', (message) => {
+    // console.log(message);
+    //  if message has bot property...
+    if (message.author.bot) {
+        return;
+    }
+    if (message.content === "shika") {
+        //  https://stackoverflow.com/questions/69124819/send-an-image-using-discord-js
+        message.channel.send( "Nun.\n", {files: [{ attachment: 'static\\images\\NUN.jpg' }]});
+        message.channel.send({files: [{ attachment: 'static\\images\\NUN.jpg' }]});
+        console.log("waiting");
+        setTimeout(function(){
+            console.log("reply message")
+       
+            message.channel.send("https://www.youtube.com/watch?v=ZZvIVRQ4E7I");
+        }, 1500);
+        
+
+    }
+})
+
+client.login(process.env.TOKEN);
