@@ -1,5 +1,7 @@
 # Noko-Bot
 
+![Nun](static\images\NUN.jpg)
+
 
 install 
 
