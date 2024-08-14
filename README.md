@@ -24,7 +24,7 @@ npm install dotenv
 
 
 ## Run The Project
-To run the project you can either do:
+Nun! To run the project you can either do:
 
 ```
 nodemon
@@ -53,6 +53,11 @@ OR
 
 :clap:
 ```
+
+You can also type phrase out in chunks
+(ex. msg1 -> shikanoko, msg2 -> nokonoko,  msg3 -> koshitantan, msg4 -> :clap:)
+
+Say しかのこのこのここしたんたん (can be in english too!) , followed by the clap in a new message ***4 times*** and Noko Bot will show you the video! 
 
 
 

@@ -103,7 +103,7 @@ client.on('messageCreate', (message) => {
         
     } else {
         //  If these aren't consecutive, then we reset all counters
-        console.log("ERROR: WRONG SEQUENCE! RESTART!");
+        // console.log("ERROR: WRONG SEQUENCE! RESTART!");
         resetCounters();
     }
 })
