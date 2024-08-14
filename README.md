@@ -1,6 +1,6 @@
 # Noko-Bot
 
-![Nun](static\images\NUN.jpg)
+![Nun](static/images/NUN.jpg)
 
 
 
