@@ -6,7 +6,7 @@
 
 ## Project Description
 Nun! This is a discord bot that will show the hit song "Shikairo Days" only if users send a specific sequence of messages on Discord
-
+(Please note that this is just a personal project and not affiliated with the offical show or song)
 
 ## Project Installation
 Nun! You should install/run the following:
