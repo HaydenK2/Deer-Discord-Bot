@@ -44,7 +44,6 @@ Note: Do not include "message 1" or "message 2" in your discord message when sum
 ```
 message 1: shikanoko nokonoko koshitantan
 
-
 message 2: :clap: (note: the clap emoji must be a separate message)
 ```
 
@@ -60,16 +59,12 @@ OR
 
 ```
 message 1: shikanoko nokonoko koshitantan :clap:
-
-
 ```
 
 OR
 
 ```
 message 1: しかのこのこのここしたんたん :clap:
-
-
 ```
 
 
