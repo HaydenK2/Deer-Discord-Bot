@@ -7,6 +7,7 @@ JPFlag = false;
 ENFlag = false;
 counter = 0;
 canClap = false;
+shikanokoCount = 0;
 
 totalCounter = 0;   //  must say four times
 // Intents = set of permissions to access set of events
@@ -26,7 +27,7 @@ const client = new Client({
 
 //  Confirms if bot enters server for first time
 client.on('guildCreate', (guild) => {
-    guild.systemChannel.send( "Nun!\n");
+    guild.systemChannel.send( "ぬん!\n");
     guild.systemChannel.send({files: [{ attachment: 'static\\images\\Enter_Noko.gif' }]});
 });
 
@@ -49,13 +50,23 @@ client.on('messageCreate', (message) => {
         if (canClap && totalCounter >= 3) {
             shikaMsg(message);
             totalCounter = 0;
+            resetCounters();
         }  else if (canClap) {
             totalCounter++;
         }  else {
             resetCounters();
         }
-    }
-    else if (message.content === "shikanoko nokonoko koshitantan" || message.content === "しかのこのこのここしたんたん") { 
+    }   else if (message.content === "shikanoko nokonoko koshitantan 👏" || message.content === "しかのこのこのここしたんたん 👏") {
+        canClap = true;
+        if (canClap && totalCounter >= 3) {
+            shikaMsg(message);
+            totalCounter = 0;
+            resetCounters();
+        }  else {
+            totalCounter++;
+        }  
+
+    } else if (message.content === "shikanoko nokonoko koshitantan" || message.content === "しかのこのこのここしたんたん") { 
         //  phrase must be said 4 times
         canClap = true;
         console.log("can now clap");
@@ -101,6 +112,8 @@ client.on('messageCreate', (message) => {
             console.log("Must continue sequence in jp!");
         } 
         
+    } else if (message.content.toLowerCase() === "!shikanoko'd") {
+        message.channel.send("🦌🦌🦌ぬん! シカノコしたの" + shikanokoCount + "回! 🦌🦌🦌");
     } else {
         //  If these aren't consecutive, then we reset all counters
         // console.log("ERROR: WRONG SEQUENCE! RESTART!");
@@ -136,19 +149,27 @@ function checkTotalCounter(message) {
     }   
 }
 
+/**
+ * discord bot sends in a text message, a png, and a video link
+ * 
+ * @param {} message : this is how the discord bot will send a message to the discord server
+ */
 function shikaMsg(message) {
     //  https://stackoverflow.com/questions/69124819/send-an-image-using-discord-js
-    message.channel.send( "Nun\n");
+    message.channel.send( "ぬん.\n");
     message.channel.send({files: [{ attachment: 'static\\images\\NUN.jpg' }]});
     
     console.log("waiting");
 
+    //  wait for about 1.5 seconds
     setTimeout(function(){
         console.log("reply message");
         //  maybe send a audio mp3? https://stackoverflow.com/questions/66037860/how-can-i-get-my-discord-bot-to-send-mp3-files-discord-py
-        message.channel.send("https://www.youtube.com/watch?v=ZZvIVRQ4E7I");
         // message.channel.send({files: [{attachment: 'static\\audio\\ShikairoDays.mp3'}]});
+        message.channel.send("https://www.youtube.com/watch?v=ZZvIVRQ4E7I");
     }, 1500);
+
+    shikanokoCount+= 1;
 }
 
 client.login(process.env.TOKEN);
