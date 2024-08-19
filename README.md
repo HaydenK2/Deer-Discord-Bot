@@ -5,7 +5,7 @@
 
 
 ## Project Description
-Nun! This is a discord bot that will show the hit song "Shikairo Days"
+Nun! This is a discord bot that will show the hit song "Shikairo Days" only if users send a specific sequence of messages on Discord
 
 
 ## Project Installation
