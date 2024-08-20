@@ -3,13 +3,14 @@ const {Client, IntentsBitField} = require('discord.js');
 const emotes = (str) => str.match(/<a?:.+?:\d{18}>|\p{Extended_Pictographic}/gu);
 requiredWords = ["shikanoko", "nokonoko", "koshitantan"];
 requiredWordsJp = ["しかのこ", "のこのこ", "こしたんたん"];
-JPFlag = false;
-ENFlag = false;
-counter = 0;
-canClap = false;
-shikanokoCount = 0;
+JPFlag = false; //  flag that checks if you're saying the shikanoko phrase in chuncks using the japanese language
+ENFlag = false; //  flag that checks if you're saying the shikanoko phrase in chuncks using the english language
+chunkCounter = 0;    //  counter that keeps track of which shikanoko chunk phrase we are at 
+canClap = false;    //  flag that checks if user can use the clap emoji
+shikanokoCount = 0; //  counts the number of times Noko Bot sent the video
 
 totalCounter = 0;   //  must say four times
+
 // Intents = set of permissions to access set of events
 //  ex. if have Guilds, will know if guild (aka server) is created, etc.
 //  need to turn on priviliged getway intents on bot
@@ -71,7 +72,7 @@ client.on('messageCreate', (message) => {
         canClap = true;
         console.log("can now clap");
         
-    }   else if (message.content === requiredWords[counter]) {
+    }   else if (message.content === requiredWords[chunkCounter]) {
         
 
         //  if JPFlag is on then must reset
@@ -81,17 +82,17 @@ client.on('messageCreate', (message) => {
             return;
         }
 
-        if (counter >= requiredWords.length - 1) {
+        if (chunkCounter >= requiredWords.length - 1) {
             canClap = true;
             console.log("can now clap");
-            counter = 0;
+            chunkCounter = 0;
         }   else {
-            counter++;
-            console.log("increment counter: " + counter);
+            chunkCounter++;
+            console.log("increment chunkCounter: " + chunkCounter);
             ENFlag = true;
             console.log("Must continue sequence in jp!");
         }
-    }   else if (message.content === requiredWordsJp[counter]){
+    }   else if (message.content === requiredWordsJp[chunkCounter]){
         
         //  if ENFlag is on then must reset
         if (ENFlag) {
@@ -100,14 +101,14 @@ client.on('messageCreate', (message) => {
             return;
         }
 
-        if (counter >= requiredWords.length - 1) {
+        if (chunkCounter >= requiredWords.length - 1) {
             canClap = true;
             console.log("can now clap");
-            counter = 0;
+            chunkCounter = 0;
         }   else {
 
-            counter++;
-            console.log("increment counter: " + counter);
+            chunkCounter++;
+            console.log("increment chunkCounter: " + chunkCounter);
             JPFlag = true;
             console.log("Must continue sequence in jp!");
         } 
@@ -126,7 +127,7 @@ client.on('messageCreate', (message) => {
  * Resets all global vars
  */
 function resetCounters() {
-    counter = 0;
+    chunkCounter = 0;
     totalCounter = 0;
     JPFlag = false;
     ENFlag = false;
